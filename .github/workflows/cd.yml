@@ -1,4 +1,3 @@
-```yaml
 name: Python CI with Cache
 
 on:
@@ -45,7 +44,8 @@ jobs:
 
       - name: prime-cache-65c1288
         if: steps.check_repo.outputs.empty == 'false'
-        run: echo 'Cache result: ${{ steps.cache.outputs.cache-hit }}'
+        run: |
+          echo "Cache result: ${{ steps.cache.outputs.cache-hit }}"
 
       - name: Install dependencies
         if: steps.check_repo.outputs.empty == 'false'
@@ -61,4 +61,4 @@ jobs:
         if: steps.check_repo.outputs.empty == 'false'
         run: |
           echo "✅ CI pipeline completed."
-```
+
