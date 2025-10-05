@@ -1,9 +1,10 @@
+```yaml
 name: Python CI with Cache
 
 on:
   push:
   pull_request:
-  workflow_dispatch:   # ✅ Allows manual trigger from GitHub UI
+  workflow_dispatch:   
 
 jobs:
   build:
@@ -13,7 +14,6 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
-          # ✅ This ensures workflow still runs even if repo is empty
           fetch-depth: 0
 
       - name: Check if repository is empty
@@ -45,7 +45,7 @@ jobs:
 
       - name: prime-cache-65c1288
         if: steps.check_repo.outputs.empty == 'false'
-        run: echo "Cache result: ${{ steps.cache.outputs.cache-hit }}"
+        run: echo 'Cache result: ${{ steps.cache.outputs.cache-hit }}'
 
       - name: Install dependencies
         if: steps.check_repo.outputs.empty == 'false'
@@ -61,3 +61,4 @@ jobs:
         if: steps.check_repo.outputs.empty == 'false'
         run: |
           echo "✅ CI pipeline completed."
+```
